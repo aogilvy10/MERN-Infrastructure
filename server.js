@@ -17,6 +17,10 @@ app.use(express.json());
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
 
+// Middleware to verify token and assign user object to req.user
+// be sure to mount before routes
+app.use(require('./config/checkToken'));
+
 // get the server ti listen
 
 const port = process.env.PORT || 3001;
@@ -28,7 +32,7 @@ app.listen(port, function() {
 // catch all route
 // catch any get requests that doesnt match one of our api routes
 // put API routes here, before the "catch all route"
-
+app.use('/api/users', require('./routes/api/users'))
 
 //The following "catch all" route (note the *) is nessecary to rerturn the index.html on all non-AJAX requests
 // /* matches anything

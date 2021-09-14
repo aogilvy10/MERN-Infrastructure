@@ -1,10 +1,13 @@
 import React from 'react'
+import SignUpForm from '../components/SignUpForm'
 
-const AuthPage = () => {
+
+const AuthPage = ({ setUser }) => {
   return (
-    <div>
+    <main>
       <h1>Auth Page</h1>
-    </div>
+      <SignUpForm setUser={setUser} />
+    </main>
   )
 }
 
